@@ -26,6 +26,19 @@ CpSpace class >> ffi_cpSpaceNew [
 ]
 
 { #category : #accessing }
+CpSpace >> collisionSlop [
+	^ self
+		ffiCall: #(cpFloat cpSpaceGetCollisionSlop #(const cpSpace * self))
+]
+
+{ #category : #accessing }
+CpSpace >> collisionSlop: collisionSlop [
+	self
+		ffiCall:
+			#(void cpSpaceSetCollisionSlop #(cpSpace * self , cpFloat collisionSlop))
+]
+
+{ #category : #accessing }
 CpSpace >> iterations [
 	^ self ffiCall: #( int cpSpaceGetIterations(const cpSpace *self) )
 ]
@@ -34,4 +47,16 @@ CpSpace >> iterations [
 CpSpace >> iterations: iterations [ 
 	self ffiCall: #( void cpSpaceSetIterations(cpSpace *self, int iterations) )
 
+]
+
+{ #category : #accessing }
+CpSpace >> sleepTimeThreshold [
+	^ self ffiCall: #( cpFloat cpSpaceGetSleepTimeThreshold(const cpSpace *self) )
+]
+
+{ #category : #accessing }
+CpSpace >> sleepTimeThreshold: sleepTimeThreshold [
+	self
+		ffiCall:
+			#(void cpSpaceSetSleepTimeThreshold #(cpSpace * self , cpFloat sleepTimeThreshold))
 ]
