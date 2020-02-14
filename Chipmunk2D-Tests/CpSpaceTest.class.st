@@ -22,14 +22,26 @@ CpSpaceTest >> tearDown [
 ]
 
 { #category : #running }
+CpSpaceTest >> testAddBody [
+	| body |
+	body := CpBody
+		newMass: 1
+		moment:
+			(CpLibrary uniqueInstance momentForBoxWithMass: 1 width: 30 height: 30).
+	space addBody: body.
+	self flag: #todo	"assert!"
+]
+
+{ #category : #running }
 CpSpaceTest >> testAddSegmentShape [
-	| body source target shape |
-	body := space staticBody.
-	source := -320 @ -240.
-	target := -320 @ 240.
-	shape := CpShape newSegmentBody: body from: source to: target radius: 0.0.
+	| shape |
+	shape := CpShape
+		newSegmentBody: space staticBody
+		from: -320 @ -240
+		to: -320 @ 240
+		radius: 0.0.
 	space addShape: shape.
-"	self assert: body class equals: CpBody"
+	self flag: #todo	"assert!"
 ]
 
 { #category : #running }
@@ -49,13 +61,10 @@ CpSpaceTest >> testSetAndGetCollisionSlop [
 
 { #category : #running }
 CpSpaceTest >> testSetAndGetGravity [
-
-"	TODO: no idea what's the problem
-	
-	space gravity: CpVector zero.
-	self assert: space gravity equals: 0.0 @ 0.0."
-	"space gravity: 50@50.
-	self assert: space gravity equals: 50@50."
+	"Default value"
+	self assert: space gravity equals: 0@0.
+	space gravity: 50@50.
+	self assert: space gravity equals: 50@50.
 ]
 
 { #category : #running }

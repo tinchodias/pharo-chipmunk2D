@@ -21,22 +21,25 @@ CpShapeTest >> setUp [
 		newSegmentBody: space staticBody
 		from: source
 		to: target
-		radius: 0.0.
-	shape elasticity: 1.0
+		radius: 0.0
 ]
 
 { #category : #tests }
 CpShapeTest >> tearDown [
+	"First, free space children"
+	(shape isNotNil and: [ shape handle isNotNil ])
+		ifTrue: [ CpShape ffi_cpShapeFree: shape handle ].
+
+	"Free space"
 	(space isNotNil and: [ space handle isNotNil ])
 		ifTrue: [ CpSpace ffi_cpSpaceFree: space handle ].
-"	(shape isNotNil and: [ shape handle isNotNil ])
-		ifTrue: [ CpShape ffi_cpShapeFree: shape handle ]."
+
 ]
 
 { #category : #tests }
 CpShapeTest >> testElasticity [
-	"Default value is 1.0"
-	self assert: shape elasticity closeTo: 1.0.
+	"Default value is 0.0"
+	self assert: shape elasticity closeTo: 0.0.
 
 	shape elasticity: 0.5.
 	self assert: shape elasticity closeTo: 0.5.

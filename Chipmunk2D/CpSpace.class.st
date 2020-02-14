@@ -40,7 +40,7 @@ CpSpace >> collisionSlop: collisionSlop [
 
 { #category : #ffi }
 CpSpace >> ffi_cpSpaceSetGravity: gravity [
-	self indirectCall: #( void cpSpaceSetGravity(cpSpace *self, cpVect gravity) )
+	self ffiCall: #( void cpSpaceSetGravity(cpSpace *self, cpVect gravity) )
 ]
 
 { #category : #accessing }
