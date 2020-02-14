@@ -34,7 +34,7 @@ Class {
 { #category : #'pool initialization' }
 CpTypeAlias class >> initialize [
 	cpBool := #bool.
-	cpFloat := #float.
+	cpFloat := #double.
 	cpTimestamp := #uint.
 	cpHashValue := #uint.
 	cpLayers := #uint.
