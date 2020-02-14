@@ -7,6 +7,11 @@ Class {
 	#category : #'Chipmunk2D-Tests-Model'
 }
 
+{ #category : #testing }
+CpObjectTest class >> isAbstract [ 
+	^ self = CpObjectTest
+]
+
 { #category : #running }
 CpObjectTest >> setUp [
 	space := CpSpace new

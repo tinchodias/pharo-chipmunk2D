@@ -7,29 +7,43 @@ Class {
 	#category : #'Chipmunk2D-Demo'
 }
 
-{ #category : #'as yet unclassified' }
-CpAbstractDemo >> draw [
-	self subclassResponsibility
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #releasing }
 CpAbstractDemo >> freeSpace [
-	self flag: #todo. "free children"
-	CpSpace ffi_cpSpaceFree: space handle 
+	space freeWithChildren
 ]
 
-{ #category : #'as yet unclassified' }
-CpAbstractDemo >> initializeSpace [
-	self subclassResponsibility
-]
-
-{ #category : #'as yet unclassified' }
-CpAbstractDemo >> prepare [
+{ #category : #initialization }
+CpAbstractDemo >> initialize [
 	space := CpSpace new.
 	self initializeSpace
 ]
 
-{ #category : #'as yet unclassified' }
-CpAbstractDemo >> update [
+{ #category : #initialization }
+CpAbstractDemo >> initializeSpace [
 	self subclassResponsibility
+]
+
+{ #category : #accessing }
+CpAbstractDemo >> space [
+	^ space
+]
+
+{ #category : #stepping }
+CpAbstractDemo >> step [
+	self updateAfter: self timeStep.
+]
+
+{ #category : #stepping }
+CpAbstractDemo >> timeStep [
+	^ 1.0 / 180.0
+]
+
+{ #category : #accessing }
+CpAbstractDemo >> title [
+	self subclassResponsibility
+]
+
+{ #category : #stepping }
+CpAbstractDemo >> updateAfter: dt [
+	space step: dt
 ]
