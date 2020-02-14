@@ -30,3 +30,11 @@ CpObject class >> finalizeResourceData: handle [
 CpObject >> free [
 	self class finalizeResourceData: handle
 ]
+
+{ #category : #'initialize-release' }
+CpObject >> initialize [
+	self flag: #fix. 
+	"--> Intentionally not super initializing because it overrides handle!"
+
+
+]
