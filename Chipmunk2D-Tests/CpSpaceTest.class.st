@@ -33,7 +33,7 @@ CpSpaceTest >> testAddBody [
 ]
 
 { #category : #running }
-CpSpaceTest >> testAddSegmentShape [
+CpSpaceTest >> testAddShape [
 	| shape |
 	shape := CpShape
 		newSegmentBody: space staticBody
@@ -45,14 +45,7 @@ CpSpaceTest >> testAddSegmentShape [
 ]
 
 { #category : #running }
-CpSpaceTest >> testGetStaticBody [
-	| body |
-	body := space staticBody.
-	self assert: body class equals: CpBody
-]
-
-{ #category : #running }
-CpSpaceTest >> testSetAndGetCollisionSlop [
+CpSpaceTest >> testCollisionSlop [
 	space collisionSlop: 0.5.
 	self assert: space collisionSlop closeTo: 0.5.
 	space collisionSlop: 0.7.
@@ -60,7 +53,7 @@ CpSpaceTest >> testSetAndGetCollisionSlop [
 ]
 
 { #category : #running }
-CpSpaceTest >> testSetAndGetGravity [
+CpSpaceTest >> testGravity [
 	"Default value"
 	self assert: space gravity equals: 0@0.
 	space gravity: 50@50.
@@ -68,7 +61,7 @@ CpSpaceTest >> testSetAndGetGravity [
 ]
 
 { #category : #running }
-CpSpaceTest >> testSetAndGetIterations [
+CpSpaceTest >> testIterations [
 	space iterations: 30.
 	self assert: space iterations equals: 30.
 	space iterations: 31.
@@ -76,9 +69,16 @@ CpSpaceTest >> testSetAndGetIterations [
 ]
 
 { #category : #running }
-CpSpaceTest >> testSetAndGetSleepTimeThreshold [
+CpSpaceTest >> testSleepTimeThreshold [
 	space sleepTimeThreshold: 0.5.
 	self assert: space sleepTimeThreshold closeTo: 0.5.
 	space sleepTimeThreshold: 0.7.
 	self assert: space sleepTimeThreshold closeTo: 0.7
+]
+
+{ #category : #running }
+CpSpaceTest >> testStaticBody [
+	| body |
+	body := space staticBody.
+	self assert: body class equals: CpBody
 ]
