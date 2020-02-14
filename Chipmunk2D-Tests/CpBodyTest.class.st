@@ -22,9 +22,9 @@ CpBodyTest >> setUp [
 { #category : #tests }
 CpBodyTest >> testPosition [
 	"Default value"
-	self assert: body position equals: 0@0.
+	self assert: body position closeTo: 0@0.
 
 	body position: 10.5 @ 40.
-	self assert: body position equals: 10.5 @ 40.
+	self assert: body position closeTo: 10.5 @ 40.
 
 ]

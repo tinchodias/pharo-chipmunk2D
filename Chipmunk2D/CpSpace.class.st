@@ -37,19 +37,15 @@ CpSpace class >> new [
 ]
 
 { #category : #accessing }
-CpSpace >> addBody: aCpBody [ 
-	^ self ffiCall: #(
-cpBody *
-cpSpaceAddBody(cpSpace *self, cpBody *aCpBody)
-)
+CpSpace >> addBody: aCpBody [
+	bodies add: aCpBody.
+	^ self ffi_cpSpaceAddBody: aCpBody
 ]
 
 { #category : #accessing }
 CpSpace >> addShape: shape [
-	^ self ffiCall: #(
-cpShape *
-cpSpaceAddShape(cpSpace *self, cpShape *shape)
-)
+	shapes add: shape.
+	^ self ffi_cpSpaceAddShape: shape
 ]
 
 { #category : #accessing }
