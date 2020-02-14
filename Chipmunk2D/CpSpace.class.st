@@ -21,9 +21,19 @@ CpSpace class >> ffi_cpSpaceNew [
 ]
 
 { #category : #accessing }
+CpSpace >> addBody: aCpBody [ 
+	^ self ffiCall: #(
+cpBody *
+cpSpaceAddBody(cpSpace *self, cpBody *aCpBody)
+)
+]
+
+{ #category : #accessing }
 CpSpace >> addShape: shape [
-	^ self ffiCall:
-		#(cpShape * cpSpaceAddShape #(cpSpace * self, cpShape * shape))
+	^ self ffiCall: #(
+cpShape *
+cpSpaceAddShape(cpSpace *self, cpShape *shape)
+)
 ]
 
 { #category : #accessing }
@@ -38,6 +48,11 @@ CpSpace >> collisionSlop: collisionSlop [
 		#(void cpSpaceSetCollisionSlop #(cpSpace * self, cpFloat collisionSlop))
 ]
 
+{ #category : #accessing }
+CpSpace >> ffi_cpSpaceGetGravity [
+	 ^ self ffiCall: #(cpVect cpSpaceGetGravity(const cpSpace *self) )
+]
+
 { #category : #ffi }
 CpSpace >> ffi_cpSpaceSetGravity: gravity [
 	self ffiCall: #( void cpSpaceSetGravity(cpSpace *self, cpVect gravity) )
@@ -45,7 +60,7 @@ CpSpace >> ffi_cpSpaceSetGravity: gravity [
 
 { #category : #accessing }
 CpSpace >> gravity [
-	 ^ self ffiCall: #(cpVect cpSpaceGetGravity(const cpSpace *self) )
+	 ^ self ffi_cpSpaceGetGravity asPoint
 ]
 
 { #category : #accessing }

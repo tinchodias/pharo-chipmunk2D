@@ -28,14 +28,14 @@ CpVector class >> from: anObject [
 
 { #category : #'instance creation' }
 CpVector class >> fromPoint: aPoint [
-	^ self x: aPoint x asFloat y: aPoint y asFloat
+	^ self x: aPoint x y: aPoint y
 ]
 
 { #category : #'instance creation' }
-CpVector class >> x: xFloat y: yFloat [
+CpVector class >> x: x y: y [
 	^ self new
-		x: xFloat;
-		y: yFloat;
+		x: x asFloat;
+		y: y asFloat;
 		yourself
 ]
 
@@ -46,12 +46,12 @@ CpVector class >> zero [
 
 { #category : #'basic operation' }
 CpVector >> + aCmVector [
-	^ CpVector x: self x + aCmVector x y: self y + aCmVector y
+	^ self class x: self x + aCmVector x y: self y + aCmVector y
 ]
 
 { #category : #'basic operation' }
 CpVector >> - aCpVector [
-	^ CpVector x: self x - aCpVector x y: self y - aCpVector y
+	^ self class x: self x - aCpVector x y: self y - aCpVector y
 ]
 
 { #category : #converting }
@@ -76,23 +76,23 @@ CpVector >> rotateBy: aCpVector [
 { #category : #'accessing structure variables' }
 CpVector >> x [
 	"This method was automatically generated"
-	^handle floatAt: OFFSET_X
+	^handle doubleAt: OFFSET_X
 ]
 
 { #category : #'accessing structure variables' }
 CpVector >> x: anObject [
 	"This method was automatically generated"
-	handle floatAt: OFFSET_X put: anObject
+	handle doubleAt: OFFSET_X put: anObject
 ]
 
 { #category : #'accessing structure variables' }
 CpVector >> y [
 	"This method was automatically generated"
-	^handle floatAt: OFFSET_Y
+	^handle doubleAt: OFFSET_Y
 ]
 
 { #category : #'accessing structure variables' }
 CpVector >> y: anObject [
 	"This method was automatically generated"
-	handle floatAt: OFFSET_Y put: anObject
+	handle doubleAt: OFFSET_Y put: anObject
 ]
