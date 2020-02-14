@@ -3,9 +3,8 @@ A CpShapeTest is a test class for testing the behavior of CpShape
 "
 Class {
 	#name : #CpShapeTest,
-	#superclass : #TestCase,
+	#superclass : #CpObjectTest,
 	#instVars : [
-		'space',
 		'shape'
 	],
 	#category : #'Chipmunk2D-Tests-Model'
@@ -13,27 +12,12 @@ Class {
 
 { #category : #tests }
 CpShapeTest >> setUp [
-	| source target |
-	space := CpSpace ffi_cpSpaceNew.
-	source := -320 @ -240.
-	target := -320 @ 240.
+	super setUp.
 	shape := CpShape
 		newSegmentBody: space staticBody
-		from: source
-		to: target
+		from: -32 @ -24
+		to:  -32 @ 24
 		radius: 0.0
-]
-
-{ #category : #tests }
-CpShapeTest >> tearDown [
-	"First, free space children"
-	(shape isNotNil and: [ shape handle isNotNil ])
-		ifTrue: [ CpShape ffi_cpShapeFree: shape handle ].
-
-	"Free space"
-	(space isNotNil and: [ space handle isNotNil ])
-		ifTrue: [ CpSpace ffi_cpSpaceFree: space handle ].
-
 ]
 
 { #category : #tests }

@@ -4,6 +4,11 @@ Class {
 	#category : #'Chipmunk2D-Model'
 }
 
+{ #category : #finalization }
+CpBody class >> doFreeUsingFFI: handle [
+	self ffi_cpBodyFree: handle
+]
+
 { #category : #ffi }
 CpBody class >> ffi_cpBodyFree: handle [
 	self ffiCall: #(void cpBodyFree #(cpBody * handle))
@@ -19,7 +24,12 @@ cpBodyNew(cpFloat mass, cpFloat moment)
 
 { #category : #'instance creation' }
 CpBody class >> newMass: mass moment: moment [
-	^ self ffi_cpBodyNewMass: mass asFloat moment: moment asFloat
+	"Answer a new instance of this class, using the library API.
+	The instance leaves in C heap and must be released explicitely sending #free."
+
+	^ (self ffi_cpBodyNewMass: mass asFloat moment: moment asFloat)
+		initialize;
+		yourself
 ]
 
 { #category : #accessing }

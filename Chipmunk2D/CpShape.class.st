@@ -4,6 +4,11 @@ Class {
 	#category : #'Chipmunk2D-Model'
 }
 
+{ #category : #finalization }
+CpShape class >> doFreeUsingFFI: handle [
+	self ffi_cpShapeFree: handle
+]
+
 { #category : #ffi }
 CpShape class >> ffi_cpSegmentNew: body from: a to: b radius: radius [
 	^ self ffiCall: #( cpShape* cpSegmentShapeNew(
@@ -20,13 +25,16 @@ CpShape class >> ffi_cpShapeFree: handle [
 
 { #category : #'instance creation' }
 CpShape class >> newSegmentBody: aBody from: fromPoint to: toPoint radius: aFloat [
-	"Creates a segment shape from a point to another"
+	"Answer a new instance of this class, using the library API.
+	The instance leaves in C heap and must be released explicitely sending #free."
 
-	^ self
+	^ (self
 		ffi_cpSegmentNew: aBody
 		from: fromPoint asCpVector
 		to: toPoint asCpVector
-		radius: aFloat asFloat
+		radius: aFloat asFloat)
+		initialize;
+		yourself
 ]
 
 { #category : #accessing }

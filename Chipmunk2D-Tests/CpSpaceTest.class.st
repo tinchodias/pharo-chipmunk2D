@@ -3,23 +3,9 @@ A CpSpaceTest is a test class for testing the behavior of CpSpace
 "
 Class {
 	#name : #CpSpaceTest,
-	#superclass : #TestCase,
-	#instVars : [
-		'space'
-	],
+	#superclass : #CpObjectTest,
 	#category : #'Chipmunk2D-Tests-Model'
 }
-
-{ #category : #running }
-CpSpaceTest >> setUp [
-	space := CpSpace ffi_cpSpaceNew
-]
-
-{ #category : #running }
-CpSpaceTest >> tearDown [
-	(space isNotNil and: [ space handle isNotNil ])
-		ifTrue: [ CpSpace ffi_cpSpaceFree: space handle ]
-]
 
 { #category : #running }
 CpSpaceTest >> testAddBody [
@@ -29,7 +15,7 @@ CpSpaceTest >> testAddBody [
 		moment:
 			(CpLibrary uniqueInstance momentForBoxWithMass: 1 width: 30 height: 30).
 	space addBody: body.
-	self flag: #todo	"assert!"
+	self assert: (space bodies includes: body)
 ]
 
 { #category : #running }
@@ -37,11 +23,11 @@ CpSpaceTest >> testAddShape [
 	| shape |
 	shape := CpShape
 		newSegmentBody: space staticBody
-		from: -320 @ -240
-		to: -320 @ 240
+		from: 20 @ 40
+		to: 30 @ 50
 		radius: 0.0.
 	space addShape: shape.
-	self flag: #todo	"assert!"
+	self assert: (space shapes includes: shape)
 ]
 
 { #category : #running }
@@ -81,4 +67,10 @@ CpSpaceTest >> testStaticBody [
 	| body |
 	body := space staticBody.
 	self assert: body class equals: CpBody
+]
+
+{ #category : #running }
+CpSpaceTest >> testStep [
+	space step: 0.5.
+	self flag: #todo "assert!"
 ]
