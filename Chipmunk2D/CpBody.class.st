@@ -11,13 +11,13 @@ CpBody class >> doFreeUsingFFI: handle [
 
 { #category : #ffi }
 CpBody class >> ffi_cpBodyFree: handle [
-	self ffiCall: #(void cpBodyFree #(cpBody * handle))
+	self ffiCall: #(void cpBodyFree #(void * handle))
 ]
 
 { #category : #ffi }
 CpBody class >> ffi_cpBodyNewMass: mass moment: moment [
 	^ self ffiCall: #(
-cpBody*
+CpBody
 cpBodyNew(cpFloat mass, cpFloat moment)
 )
 ]
@@ -36,7 +36,7 @@ CpBody class >> newMass: mass moment: moment [
 CpBody >> ffi_cpBodyGetPosition [
 	^ self ffiCall: #(
 cpVect
-cpBodyGetPosition(const cpBody *self)
+cpBodyGetPosition(CpBody self)
 )
 ]
 
@@ -44,7 +44,7 @@ cpBodyGetPosition(const cpBody *self)
 CpBody >> ffi_cpBodySetPosition: aCpVector [
 	^ self ffiCall: #(
 void
-cpBodySetPosition(cpBody *self, cpVect aCpVector)
+cpBodySetPosition(CpBody self, cpVect aCpVector)
 )
 ]
 

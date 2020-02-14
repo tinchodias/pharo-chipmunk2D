@@ -17,13 +17,13 @@ CpSpace class >> doFreeUsingFFI: handle [
 
 { #category : #resources }
 CpSpace class >> ffi_cpSpaceFree: handle [
-	self ffiCall: #( void cpSpaceFree(cpSpace *handle) )
+	self ffiCall: #(void cpSpaceFree(void * handle))
 
 ]
 
 { #category : #resources }
 CpSpace class >> ffi_cpSpaceNew [
-	^ self ffiCall: #( cpSpace* cpSpaceNew() )
+	^ self ffiCall: #(CpSpace cpSpaceNew())
 ]
 
 { #category : #resources }
@@ -56,46 +56,46 @@ CpSpace >> bodies [
 { #category : #accessing }
 CpSpace >> collisionSlop [
 	^ self ffiCall:
-		#(cpFloat cpSpaceGetCollisionSlop #(const cpSpace * self))
+		#(cpFloat cpSpaceGetCollisionSlop(CpSpace self))
 ]
 
 { #category : #accessing }
 CpSpace >> collisionSlop: collisionSlop [
 	self ffiCall:
-		#(void cpSpaceSetCollisionSlop #(cpSpace * self, cpFloat collisionSlop))
+		#(void cpSpaceSetCollisionSlop(CpSpace self, cpFloat collisionSlop))
 ]
 
 { #category : #accessing }
 CpSpace >> ffi_cpSpaceAddBody: aCpBody [ 
 	^ self ffiCall: #(
-cpBody *
-cpSpaceAddBody(cpSpace *self, cpBody *aCpBody)
+CpBody
+cpSpaceAddBody(CpSpace self, CpBody aCpBody)
 )
 ]
 
 { #category : #accessing }
 CpSpace >> ffi_cpSpaceAddShape: shape [
 	^ self ffiCall: #(
-cpShape *
-cpSpaceAddShape(cpSpace *self, cpShape *shape)
+CpShape
+cpSpaceAddShape(CpSpace self, CpShape shape)
 )
 ]
 
 { #category : #accessing }
 CpSpace >> ffi_cpSpaceGetGravity [
-	 ^ self ffiCall: #(cpVect cpSpaceGetGravity(const cpSpace *self) )
+	 ^ self ffiCall: #(cpVect cpSpaceGetGravity(CpSpace self) )
 ]
 
 { #category : #ffi }
 CpSpace >> ffi_cpSpaceSetGravity: gravity [
-	self ffiCall: #( void cpSpaceSetGravity(cpSpace *self, cpVect gravity) )
+	self ffiCall: #(void cpSpaceSetGravity(CpSpace self, cpVect gravity))
 ]
 
 { #category : #accessing }
 CpSpace >> ffi_cpSpaceStep: dt [
 	self ffiCall: #(
 void
-cpSpaceStep(cpSpace *self, cpFloat dt)
+cpSpaceStep(CpSpace self, cpFloat dt)
 )
 ]
 
@@ -109,7 +109,7 @@ CpSpace >> freeWithChildren [
 
 { #category : #accessing }
 CpSpace >> gravity [
-	 ^ self ffiCall: #(cpVect cpSpaceGetGravity(const cpSpace *self) )
+	 ^ self ffiCall: #(cpVect cpSpaceGetGravity(CpSpace self) )
 ]
 
 { #category : #accessing }
@@ -128,12 +128,12 @@ CpSpace >> initialize [
 
 { #category : #accessing }
 CpSpace >> iterations [
-	^ self ffiCall: #( int cpSpaceGetIterations(const cpSpace *self) )
+	^ self ffiCall: #(int cpSpaceGetIterations(CpSpace self))
 ]
 
 { #category : #accessing }
 CpSpace >> iterations: iterations [ 
-	self ffiCall: #( void cpSpaceSetIterations(cpSpace *self, int iterations) )
+	self ffiCall: #(void cpSpaceSetIterations(CpSpace self, int iterations))
 
 ]
 
@@ -144,19 +144,20 @@ CpSpace >> shapes [
 
 { #category : #accessing }
 CpSpace >> sleepTimeThreshold [
-	^ self ffiCall: #( cpFloat cpSpaceGetSleepTimeThreshold(const cpSpace *self) )
+	^ self ffiCall: #(cpFloat cpSpaceGetSleepTimeThreshold(CpSpace self))
 ]
 
 { #category : #accessing }
 CpSpace >> sleepTimeThreshold: sleepTimeThreshold [
-	self
-		ffiCall:
-			#(void cpSpaceSetSleepTimeThreshold #(cpSpace * self , cpFloat sleepTimeThreshold))
+	self ffiCall: #(
+void
+cpSpaceSetSleepTimeThreshold(CpSpace self, cpFloat sleepTimeThreshold)
+)
 ]
 
 { #category : #accessing }
 CpSpace >> staticBody [
-	^ self ffiCall: #( cpBody * cpSpaceGetStaticBody(const cpSpace *self) )
+	^ self ffiCall: #(CpBody cpSpaceGetStaticBody(CpSpace self))
 ]
 
 { #category : #accessing }

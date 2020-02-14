@@ -28,21 +28,26 @@ Class {
 		'cpTimestamp',
 		'cpVect'
 	],
+	#classInstVars : [
+		'cpCircleShape',
+		'cpSegmentShape',
+		'cpPolyShape'
+	],
 	#category : #'Chipmunk2D-Core'
 }
 
 { #category : #'pool initialization' }
 CpTypeAlias class >> initialize [
-	cpBool := #bool.
+"	cpBool := #bool."
 	cpFloat := #double.
-	cpTimestamp := #uint.
+"	cpTimestamp := #uint.
 	cpHashValue := #uint.
 	cpLayers := #uint.
 	cpGroup := #uint.
-	cpCollisionType := #uint.
+	cpCollisionType := #uint."
 		
 	"Translating to pointer"
-	cpDataPointer := #ulong.
+"	cpDataPointer := #ulong.
 	cpShapeClass := #ulong.
 	cpArray := #ulong.
 	cpSpatialIndex := #ulong.
@@ -51,12 +56,15 @@ CpTypeAlias class >> initialize [
 	cpBodyVelocityFunc := #ulong.
 	cpBodyPositionFunc := #ulong.
 	cpArbiter := #ulong.
-	cpConstraint := #ulong.
+	cpConstraint := #ulong."
 	
 	"Translating to inner classes"
 	cpVect := #CpVector.
 	cpSpace := #CpSpace.
 	cpBody := #CpBody.
 	cpShape := #CpShape.
-	cpBB := #CpBoundingBox.
+	cpCircleShape := #CpCircleShape.
+	cpSegmentShape := #CpSegmentShape.
+	cpPolyShape := #CpPolyShape.
+"	cpBB := #CpBoundingBox."
 ]

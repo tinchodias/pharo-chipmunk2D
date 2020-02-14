@@ -1,6 +1,6 @@
 Class {
 	#name : #CpObject,
-	#superclass : #FFIOpaqueObject,
+	#superclass : #FFIExternalObject,
 	#traits : 'CpTLibrary',
 	#classTraits : 'CpTLibrary classTrait',
 	#pools : [

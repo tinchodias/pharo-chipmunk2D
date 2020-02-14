@@ -12,30 +12,30 @@ CpShape class >> doFreeUsingFFI: handle [
 { #category : #'instance creation' }
 CpShape class >> ffi_cpBoxShapeNew: aBody from: width to: height radius: radius [
 	^ self ffiCall: #(
-cpShape *
-cpBoxShapeNew(cpBody *aBody, cpFloat width, cpFloat height, cpFloat radius)
+CpPolyShape
+cpBoxShapeNew(CpBody aBody, cpFloat width, cpFloat height, cpFloat radius)
 )
 ]
 
 { #category : #ffi }
 CpShape class >> ffi_cpCircleShapeNew: aCpBody radius: radius offset: offset [
 	^self ffiCall: #(
-cpShape *
-cpCircleShapeNew(cpBody *aCpBody, cpFloat radius, cpVect offset)
+CpCircleShape
+cpCircleShapeNew(CpBody aCpBody, cpFloat radius, cpVect offset)
 )
 ]
 
 { #category : #ffi }
 CpShape class >> ffi_cpSegmentNew: body from: a to: b radius: radius [
 	^ self ffiCall: #(
-cpShape*
-cpSegmentShapeNew(cpBody *body, cpVect a, cpVect b, cpFloat radius)
+CpSegmentShape
+cpSegmentShapeNew(CpBody body, cpVect a, cpVect b, cpFloat radius)
 )
 ]
 
 { #category : #ffi }
 CpShape class >> ffi_cpShapeFree: handle [
-	self ffiCall: #(void cpShapeFree #(cpShape * handle))
+	self ffiCall: #(void cpShapeFree #(void * handle))
 ]
 
 { #category : #'instance creation' }
@@ -77,7 +77,7 @@ CpShape class >> newSegmentBody: aBody from: fromPoint to: toPoint radius: aFloa
 CpShape >> elasticity [
 	^ self ffiCall: #(
 cpFloat
-cpShapeGetElasticity(const cpShape *self)
+cpShapeGetElasticity(CpShape self)
 )
 ]
 
@@ -85,7 +85,7 @@ cpShapeGetElasticity(const cpShape *self)
 CpShape >> elasticity: elasticity [ 
 	self ffiCall: #(
 void
-cpShapeSetElasticity(cpShape *self, cpFloat elasticity)
+cpShapeSetElasticity(CpShape self, cpFloat elasticity)
 )
 
 ]
@@ -94,7 +94,7 @@ cpShapeSetElasticity(cpShape *self, cpFloat elasticity)
 CpShape >> friction [
 	^ self ffiCall: #(
 cpFloat
-cpShapeGetFriction(const cpShape *self)
+cpShapeGetFriction(CpShape self)
 )
 ]
 
@@ -102,7 +102,7 @@ cpShapeGetFriction(const cpShape *self)
 CpShape >> friction: friction [ 
 	self ffiCall: #(
 void
-cpShapeSetFriction(cpShape *self, cpFloat friction)
+cpShapeSetFriction(CpShape self, cpFloat friction)
 )
 
 ]
