@@ -21,10 +21,10 @@ CpSpaceTest >> testAddBody [
 { #category : #running }
 CpSpaceTest >> testAddShape [
 	| shape |
-	shape := CpShape
+	shape := CpSegmentShape
 		newSegmentBody: space staticBody
-		from: 20 @ 40
-		to: 30 @ 50
+		a: 20 @ 40
+		b: 30 @ 50
 		radius: 0.0.
 	space addShape: shape.
 	self assert: (space shapes includes: shape)

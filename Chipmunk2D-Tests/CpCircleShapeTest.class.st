@@ -5,9 +5,35 @@ Class {
 }
 
 { #category : #running }
+CpCircleShapeTest >> circleOffset [
+	^ 4 @ 5
+]
+
+{ #category : #running }
+CpCircleShapeTest >> circleRadius [
+	^ 15.0
+]
+
+{ #category : #running }
 CpCircleShapeTest >> newShape [
-	^ CpShape
+	^ CpCircleShape
 		newCircleBody: space staticBody
-		radius: 15.0
-		offset: CpVector zero
+		radius: self circleRadius
+		offset: self circleOffset
+]
+
+{ #category : #tests }
+CpCircleShapeTest >> testOffset [
+	shape := self newShape.
+
+	self assert: shape offset closeTo: self circleOffset.
+
+]
+
+{ #category : #tests }
+CpCircleShapeTest >> testRadius [
+	shape := self newShape.
+
+	self assert: shape radius closeTo: self circleRadius.
+
 ]

@@ -18,7 +18,7 @@ CpPyramidStackDemo >> addBallRadius: radius mass: mass offset: offset [
 	space addBody: body.
 	body position: 0 @ (-240 + radius+5).
 	
-	shape := CpShape newCircleBody: body radius: radius offset: offset.
+	shape := CpCircleShape newCircleBody: body radius: radius offset: offset.
 	space addShape: shape.
 	shape
 		elasticity: 0;
@@ -37,7 +37,7 @@ CpPyramidStackDemo >> addBoxFor: i and: j mass: mass [
 	space addBody: body.
 	body position: (j*32 - (i*16)) @ (300 - (i*32)).
 	
-	shape := CpShape newBoxBody: body from: 30 to: 30 radius: 0.5.
+	shape := CpPolyShape newBoxBody: body width: 30 height: 30 radius: 0.5.
 	space addShape: shape.
 	shape
 		elasticity: 0;
@@ -47,10 +47,10 @@ CpPyramidStackDemo >> addBoxFor: i and: j mass: mass [
 { #category : #private }
 CpPyramidStackDemo >> addSegmentShapeFrom: source to: target [
 	| shape |
-	shape := CpShape 
+	shape := CpSegmentShape 
 		newSegmentBody: space staticBody
-		from: source
-		to: target
+		a: source
+		b: target
 		radius: 0.
 	shape
 		elasticity: 1.0;
