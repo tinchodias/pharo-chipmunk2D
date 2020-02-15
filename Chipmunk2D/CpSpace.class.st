@@ -113,8 +113,8 @@ CpSpace >> gravity [
 ]
 
 { #category : #accessing }
-CpSpace >> gravity: anObject [
-	self ffi_cpSpaceSetGravity: anObject asCpVector
+CpSpace >> gravity: aPoint [
+	self ffi_cpSpaceSetGravity: aPoint asCpVector
 	
 ]
 

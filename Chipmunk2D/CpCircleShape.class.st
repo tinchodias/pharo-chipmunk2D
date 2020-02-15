@@ -38,7 +38,9 @@ cpFloat cpCircleShapeGetRadius(CpShape self)
 
 { #category : #accessing }
 CpCircleShape >> offset [
-	^ self ffi_cpCircleShapeGetOffset asPoint
+	^ (self ffiCall: #(
+cpVect cpCircleShapeGetOffset(CpCircleShape self)
+)) asPoint
 ]
 
 { #category : #accessing }

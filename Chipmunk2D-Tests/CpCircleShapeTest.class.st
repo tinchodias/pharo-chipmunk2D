@@ -26,7 +26,7 @@ CpCircleShapeTest >> newShape [
 CpCircleShapeTest >> testOffset [
 	shape := self newShape.
 
-	self assert: shape offset closeTo: self circleOffset.
+	self assert: shape offset asPoint closeTo: self circleOffset.
 
 ]
 

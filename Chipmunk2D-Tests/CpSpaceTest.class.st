@@ -41,9 +41,9 @@ CpSpaceTest >> testCollisionSlop [
 { #category : #running }
 CpSpaceTest >> testGravity [
 	"Default value"
-	self assert: space gravity equals: 0@0.
+	self assert: space gravity asPoint equals: 0@0.
 	space gravity: 50@50.
-	self assert: space gravity equals: 50@50.
+	self assert: space gravity asPoint equals: 50@50.
 ]
 
 { #category : #running }
