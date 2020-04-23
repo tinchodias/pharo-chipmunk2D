@@ -1,6 +1,6 @@
-# pharo-chipmunk2D
+# Pharo Chipmunk2D bindings
 
-Bindings from Pharo to Chipmunk2D library via uFFI.
+Pharo uFFI bindings to use [Chipmunk2D library](http://chipmunk-physics.net/).
 
 
 ## Install
@@ -11,9 +11,9 @@ There are two steps that may be done in parallel. One if building the C library,
 
 The objective of this step is to have the library in a directory named Chipmunk2D in the image directory.
 
-First, download and unzip https://github.com/slembcke/Chipmunk2D/archive/Chipmunk-7.0.3.zip in a directory named Chipmunk2D. Alternatively, you can git clone with:
+First, download and unzip [this file](https://github.com/slembcke/Chipmunk2D/archive/Chipmunk-7.0.3.zip) in a directory named Chipmunk2D. Alternatively, you can git clone with:
 ```
-git clone git@github.com:slembcke/Chipmunk2D.git --tag Chipmunk-7.0.3
+git clone git@github.com:slembcke/Chipmunk2D.git -b Chipmunk-7.0.3 --depth 1
 ```
 
 Second, cd to the library root directory and execute in command-line:
@@ -34,8 +34,21 @@ Should show something like:
 [100%] Built target chipmunk_demos
 ```
 
-You can dig more on http://chipmunk-physics.net/release/ChipmunkLatest-Docs/ in the case something failed.
-
+You can dig more [docs](http://chipmunk-physics.net/release/ChipmunkLatest-Docs/) in the case something failed.
 
 **Try original demos:**
 Run library demos with `./demo/chipmunk_demos`. Press keys A to Z to select between demos.
+
+
+### Build Pharo bindings
+
+Evaluate in Pharo 8:
+
+~~~Smalltalk
+Metacello new 
+  baseline: 'Chipmunk2D'; 
+  repository: 'github://tinchodias/pharo-chipmunk2D/';
+  load.
+~~~
+
+Ensure in `CpLibrary` class that whether `macModuleName` or `unixModuleName` point to the right file.
