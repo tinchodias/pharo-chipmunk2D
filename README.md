@@ -4,11 +4,11 @@ Pharo uFFI bindings to use [Chipmunk2D](http://chipmunk-physics.net/).
 
 Chipmunk2D is a simple, lightweight, fast and portable 2D rigid body physics library written in C. It’s licensed under the unrestrictive, OSI approved MIT license. Hundreds of shipping games have chosen Chipmunk because of the high quality, speed, and accuracy of its 2D physics simulations. 
 
-# Install
+## Install
 
 There are two steps that may be done in parallel. One if building the C library, and second, get Pharo and load the bindings.
 
-## Build C library
+**Build C library**
 
 The objective of this step is to have the library in a directory named Chipmunk2D in the image directory.
 
@@ -37,10 +37,10 @@ Should show something like:
 
 You can dig more [docs](http://chipmunk-physics.net/release/ChipmunkLatest-Docs/) in the case something failed.
 
-**Try original demos:** Run library demos with `./demo/chipmunk_demos`. Press keys A to Z to select between demos.
+You can also run the original library demos with `./demo/chipmunk_demos`. Press keys A to Z to select between scenes.
 
 
-## Build Pharo bindings
+**Build Pharo bindings**
 
 Evaluate in Pharo 8:
 
