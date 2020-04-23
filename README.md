@@ -1,12 +1,13 @@
 # pharo-chipmunk2D
-Bindings from Pharo to Chipmunk2D library via uFFI
 
-
+Bindings from Pharo to Chipmunk2D library via uFFI.
 
 
 ## Install
 
-## Build C library
+There are two steps that may be done in parallel. One if building the C library, and second, get Pharo 8 and load the bindings.
+
+### Build C library
 
 The objective of this step is to have the library in a directory named Chipmunk2D in the image directory.
 
@@ -35,9 +36,6 @@ Should show something like:
 
 You can dig more on http://chipmunk-physics.net/release/ChipmunkLatest-Docs/ in the case something failed.
 
-### Lib demos
-You can try demos with:
-```
-./demo/chipmunk_demos
-```
-(Press keys A to Z to select demos)
+
+**Try original demos:**
+Run library demos with `./demo/chipmunk_demos`. Press keys A to Z to select between demos.
