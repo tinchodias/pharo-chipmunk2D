@@ -1,6 +1,6 @@
 Class {
 	#name : #CpStructure,
-	#superclass : #FFIStructure,
+	#superclass : #FFIExternalStructure,
 	#traits : 'CpTLibrary',
 	#classTraits : 'CpTLibrary classTrait',
 	#pools : [

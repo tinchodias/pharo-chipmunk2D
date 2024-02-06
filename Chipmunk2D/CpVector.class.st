@@ -1,25 +1,30 @@
 "
-I am a 2D (x,y) vector with float coordinates.
+I represent FFI bindings to the cpVect structure in the Chipmunk2D library.
 
-I wrap the cpVect structure from Chipmunk.
+I am a 2D (x,y) vector with float coordinates. 
+
+See: include/chipmunk/cpVect.h
 "
 Class {
 	#name : #CpVector,
-	#superclass : #CpObject,
+	#superclass : #CpStructure,
+	#classVars : [
+		'OFFSET_X',
+		'OFFSET_Y'
+	],
 	#category : #'Chipmunk2D-Model'
 }
 
-{ #category : #finalization }
-CpVector class >> doFreeUsingFFI: handle [
-	"Nothing to call in this case"
-]
-
 { #category : #'instance creation' }
-CpVector class >> ffi_cpVectCreateX: xFloat y: yFloat [
-	^ self ffiCall: #(
-CpVector
-cpVectCreate(cpFloat xFloat, cpFloat yFloat)
-)
+CpVector class >> fieldsDesc [
+	"
+	self rebuildFieldAccessors
+	"
+
+	^ #(
+		cpFloat x
+		cpFloat y
+		)
 ]
 
 { #category : #'instance creation' }
@@ -34,7 +39,11 @@ CpVector class >> fromPoint: aPoint [
 
 { #category : #'instance creation' }
 CpVector class >> x: x y: y [
-	^ self ffi_cpVectCreateX: x asFloat y: y asFloat
+
+	^ self new
+		x: x;
+		y: y;
+		yourself
 ]
 
 { #category : #'instance creation' }
@@ -54,16 +63,24 @@ CpVector >> asPoint [
 
 { #category : #'accessing structure variables' }
 CpVector >> x [
-	^ self ffiCall: #(
-cpFloat
-cpVectGetX(CpVector self)
-)
+	"This method was automatically generated"
+	^handle doubleAt: OFFSET_X
+]
+
+{ #category : #'accessing structure variables' }
+CpVector >> x: anObject [
+	"This method was automatically generated"
+	handle doubleAt: OFFSET_X put: anObject
 ]
 
 { #category : #'accessing structure variables' }
 CpVector >> y [
-	^ self ffiCall: #(
-cpFloat
-cpVectGetY(CpVector self)
-)
+	"This method was automatically generated"
+	^handle doubleAt: OFFSET_Y
+]
+
+{ #category : #'accessing structure variables' }
+CpVector >> y: anObject [
+	"This method was automatically generated"
+	handle doubleAt: OFFSET_Y put: anObject
 ]
