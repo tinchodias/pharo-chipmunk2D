@@ -1,3 +1,11 @@
+"
+I represent FFI bindings to the 'cpSegmentShape' structure in the Chipmunk2D library.
+
+I am the shape of a rigid body that looks as a thick line segment. 
+My endpoints are named A and B. My radius is a parameter to define the thickness of a segment shape.
+
+See: include/chipmunk/cpShape.h
+"
 Class {
 	#name : #CpSegmentShape,
 	#superclass : #CpShape,
@@ -28,36 +36,37 @@ CpSegmentShape class >> newSegmentBody: aBody a: fromPoint b: toPoint radius: aF
 
 { #category : #accessing }
 CpSegmentShape >> a [
-	^ self ffi_cpSegmentShapeGetA asPoint
+
+	^ self aAsCpVector asPoint
+]
+
+{ #category : #accessing }
+CpSegmentShape >> aAsCpVector [
+
+	^ self ffiCall: #(
+		cpVect
+		cpSegmentShapeGetA(CpShape self)
+		)
 ]
 
 { #category : #accessing }
 CpSegmentShape >> b [
-	^ self ffi_cpSegmentShapeGetB asPoint
+
+	^ self bAsCpVector asPoint
 ]
 
-{ #category : #ffi }
-CpSegmentShape >> ffi_cpSegmentShapeGetA [
-	^ self ffiCall: #(
-cpVect cpSegmentShapeGetA(CpShape self)
-)
-]
+{ #category : #accessing }
+CpSegmentShape >> bAsCpVector [
 
-{ #category : #ffi }
-CpSegmentShape >> ffi_cpSegmentShapeGetB [
 	^ self ffiCall: #(
-cpVect cpSegmentShapeGetB(CpShape self)
-)
-]
-
-{ #category : #ffi }
-CpSegmentShape >> ffi_cpSegmentShapeGetRadius [
-	^ self ffiCall: #(
-cpFloat cpSegmentShapeGetRadius(CpShape self)
-)
+		cpVect cpSegmentShapeGetB(CpShape self)
+		)
 ]
 
 { #category : #accessing }
 CpSegmentShape >> radius [
-	^ self ffi_cpSegmentShapeGetRadius
+
+	^ self ffiCall: #(
+		cpFloat cpSegmentShapeGetRadius(CpShape self)
+		)
 ]

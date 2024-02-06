@@ -33,27 +33,31 @@ CpBody class >> newMass: mass moment: moment [
 ]
 
 { #category : #accessing }
-CpBody >> ffi_cpBodyGetPosition [
-	^ self ffiCall: #(
-cpVect
-cpBodyGetPosition(CpBody self)
-)
-]
-
-{ #category : #accessing }
-CpBody >> ffi_cpBodySetPosition: aCpVector [
-	^ self ffiCall: #(
-void
-cpBodySetPosition(CpBody self, cpVect aCpVector)
-)
-]
-
-{ #category : #accessing }
 CpBody >> position [
-	^ self ffi_cpBodyGetPosition asPoint
+	^ self positionAsCpVector asPoint
 ]
 
 { #category : #accessing }
 CpBody >> position: aPoint [
-	self ffi_cpBodySetPosition: aPoint asCpVector
+	self positionAsCpVector: aPoint asCpVector
+]
+
+{ #category : #accessing }
+CpBody >> positionAsCpVector [
+
+	^ self ffiCall: #(
+		cpVect
+		cpBodyGetPosition(CpBody self)
+		)
+]
+
+{ #category : #accessing }
+CpBody >> positionAsCpVector: aCpVector [
+
+	self ffiCall: #(
+		void
+		cpBodySetPosition(
+			CpBody self,
+			cpVect aCpVector)
+		)
 ]

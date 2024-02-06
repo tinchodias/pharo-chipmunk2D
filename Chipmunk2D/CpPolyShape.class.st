@@ -1,3 +1,10 @@
+"
+I represent FFI bindings to the 'cpPolyShape' structure in the Chipmunk2D library.
+
+I am the polygon shape of a ridig body, defined by an array of 2D coordinates.
+
+See: include/chipmunk/cpPolyShape.h
+"
 Class {
 	#name : #CpPolyShape,
 	#superclass : #CpShape,
@@ -26,28 +33,28 @@ CpPolyShape class >> newBoxBody: aBody width: width height: height radius: radiu
 		yourself
 ]
 
-{ #category : #ffi }
-CpPolyShape >> ffi_cpPolyShapeGetCount [
-	^ self ffiCall: #(
-int
-cpPolyShapeGetCount(CpPolyShape self)
-)
-]
-
-{ #category : #ffi }
-CpPolyShape >> ffi_cpPolyShapeGetVert: zeroBasedIndex [
-	^ self ffiCall: #(
-cpVect
-cpPolyShapeGetVert(CpShape self, int zeroBasedIndex)
-)
-]
-
-{ #category : #ffi }
+{ #category : #accessing }
 CpPolyShape >> vertexAt: oneBasedIndex [
-	^ self ffi_cpPolyShapeGetVert: oneBasedIndex - 1
+
+	^ self vertexAtZeroBased: oneBasedIndex - 1
 ]
 
-{ #category : #ffi }
+{ #category : #accessing }
+CpPolyShape >> vertexAtZeroBased: zeroBasedIndex [
+
+	^ self ffiCall: #(
+		cpVect
+		cpPolyShapeGetVert(
+			CpShape self,
+			int zeroBasedIndex)
+		)
+]
+
+{ #category : #accessing }
 CpPolyShape >> vertexCount [
-	^ self ffi_cpPolyShapeGetCount
+
+	^ self ffiCall: #(
+		int
+		cpPolyShapeGetCount(CpPolyShape self)
+		)
 ]

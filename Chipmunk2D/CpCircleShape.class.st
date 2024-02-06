@@ -1,3 +1,10 @@
+"
+I represent FFI bindings to the 'cpCircleShape' structure in the Chipmunk2D library.
+
+I am the circular shape of a rigid body, with a radius and an offset.
+
+See: include/chipmunk/cpShape.h
+"
 Class {
 	#name : #CpCircleShape,
 	#superclass : #CpShape,
@@ -23,27 +30,23 @@ CpCircleShape class >> newCircleBody: aCpBody radius: radius offset: aPoint [
 ]
 
 { #category : #accessing }
-CpCircleShape >> ffi_cpCircleShapeGetOffset [
-	^ self ffiCall: #(
-cpVect cpCircleShapeGetOffset(CpCircleShape self)
-)
-]
+CpCircleShape >> offset [
 
-{ #category : #ffi }
-CpCircleShape >> ffi_cpCircleShapeGetRadius [
-	^ self ffiCall: #(
-cpFloat cpCircleShapeGetRadius(CpShape self)
-)
+	^ self offsetAsCpVector asPoint
 ]
 
 { #category : #accessing }
-CpCircleShape >> offset [
-	^ (self ffiCall: #(
-cpVect cpCircleShapeGetOffset(CpCircleShape self)
-)) asPoint
+CpCircleShape >> offsetAsCpVector [
+
+	^ self ffiCall: #(
+		cpVect cpCircleShapeGetOffset(CpCircleShape self)
+		)
 ]
 
 { #category : #accessing }
 CpCircleShape >> radius [
-	^ self ffi_cpCircleShapeGetRadius
+
+	^ self ffiCall: #(
+		cpFloat cpCircleShapeGetRadius(CpShape self)
+		)
 ]

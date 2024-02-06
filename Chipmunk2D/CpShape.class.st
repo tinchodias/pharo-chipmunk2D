@@ -1,3 +1,10 @@
+"
+I represent FFI bindings to the 'cpShape' structure in the Chipmunk2D library.
+
+I represent the common behavior and state of any rigid body's shape.
+
+See: include/chipmunk/cpShape.h
+"
 Class {
 	#name : #CpShape,
 	#superclass : #CpObject,

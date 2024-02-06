@@ -41,5 +41,5 @@ CpLibrary >> momentForCircleWithMass: mass innerRadius: r1 outerRadius: r2 offse
 
 { #category : #'accessing platform' }
 CpLibrary >> unixModuleName [
-^ (FileLocator imageDirectory / 'Chipmunk2D' / 'src' / 'libchipmunk.so') fullName
+	^ (FileLocator imageDirectory / 'Chipmunk2D' / 'src' / 'libchipmunk.so.7.0.3') fullName
 ]
