@@ -6,6 +6,7 @@ Class {
 
 { #category : #running }
 CpSegmentShapeTest >> newShape [
+
 	^ CpSegmentShape
 		newSegmentBody: space staticBody
 		a: self segmentA

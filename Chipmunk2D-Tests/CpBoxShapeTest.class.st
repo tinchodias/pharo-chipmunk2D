@@ -6,6 +6,7 @@ Class {
 
 { #category : #running }
 CpBoxShapeTest >> newShape [
+
 	^ CpPolyShape
 		newBoxBody: space staticBody
 		width: 30
@@ -17,11 +18,10 @@ CpBoxShapeTest >> newShape [
 CpBoxShapeTest >> testVertexAt [
 	shape := self newShape.
 
-	"Fix points when issue is fixed"
-	self assert: (shape vertexAt: 1) equals: 0@0.
-	self assert: (shape vertexAt: 2) equals: 0@0.
-	self assert: (shape vertexAt: 3) equals: 0@0.
-	self assert: (shape vertexAt: 4) equals: 0@0.
+	self assert: (shape pointAt: 1) equals:  15.0 @ -15.0.
+	self assert: (shape pointAt: 2) equals:  15.0 @  15.0.
+	self assert: (shape pointAt: 3) equals: -15.0 @  15.0.
+	self assert: (shape pointAt: 4) equals: -15.0 @ -15.0.
 ]
 
 { #category : #tests }

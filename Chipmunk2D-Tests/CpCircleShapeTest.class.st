@@ -16,6 +16,7 @@ CpCircleShapeTest >> circleRadius [
 
 { #category : #running }
 CpCircleShapeTest >> newShape [
+
 	^ CpCircleShape
 		newCircleBody: space staticBody
 		radius: self circleRadius

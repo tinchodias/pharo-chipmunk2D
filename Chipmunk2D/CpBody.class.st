@@ -6,20 +6,8 @@ Class {
 
 { #category : #finalization }
 CpBody class >> doFreeUsingFFI: handle [
-	self ffi_cpBodyFree: handle
-]
 
-{ #category : #ffi }
-CpBody class >> ffi_cpBodyFree: handle [
-	self ffiCall: #(void cpBodyFree #(void * handle))
-]
-
-{ #category : #ffi }
-CpBody class >> ffi_cpBodyNewMass: mass moment: moment [
-	^ self ffiCall: #(
-CpBody
-cpBodyNew(cpFloat mass, cpFloat moment)
-)
+	self ffiCall: #(void cpBodyFree (void * handle))
 ]
 
 { #category : #'instance creation' }
@@ -27,9 +15,20 @@ CpBody class >> newMass: mass moment: moment [
 	"Answer a new instance of this class, using the library API.
 	The instance leaves in C heap and must be released explicitely sending #free."
 
-	^ (self ffi_cpBodyNewMass: mass asFloat moment: moment asFloat)
+	^ (self unownedNewMass: mass asFloat moment: moment asFloat)
 		initialize;
 		yourself
+]
+
+{ #category : #'instance creation' }
+CpBody class >> unownedNewMass: mass moment: moment [
+
+	^ self ffiCall: #(
+		CpBody
+		cpBodyNew(
+			cpFloat mass,
+			cpFloat moment)
+		)
 ]
 
 { #category : #accessing }

@@ -12,25 +12,36 @@ Class {
 }
 
 { #category : #'instance creation' }
-CpPolyShape class >> ffi_cpBoxShapeNew: aBody from: width to: height radius: radius [
-	^ self ffiCall: #(
-CpPolyShape
-cpBoxShapeNew(CpBody aBody, cpFloat width, cpFloat height, cpFloat radius)
-)
-]
-
-{ #category : #'instance creation' }
 CpPolyShape class >> newBoxBody: aBody width: width height: height radius: radius [
 	"Answer a new instance of this class, using the library API.
 	The instance leaves in C heap and must be released explicitely sending #free."
 
 	^ (self
-		ffi_cpBoxShapeNew: aBody
-		from: width asFloat
-		to: height asFloat
+		unownedBoxShapeNew: aBody
+		width: width asFloat
+		height: height asFloat
 		radius: radius asFloat)
 		initialize;
 		yourself
+]
+
+{ #category : #'instance creation' }
+CpPolyShape class >> unownedBoxShapeNew: aBody width: width height: height radius: radius [
+
+	^ self ffiCall: #(
+		CpPolyShape
+		cpBoxShapeNew(
+			CpBody aBody,
+			cpFloat width,
+			cpFloat height,
+			cpFloat radius)
+		)
+]
+
+{ #category : #accessing }
+CpPolyShape >> pointAt: oneBasedIndex [
+
+	^ (self vertexAt: oneBasedIndex) asPoint
 ]
 
 { #category : #accessing }
