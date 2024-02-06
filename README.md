@@ -12,32 +12,33 @@ There are two steps that may be done in parallel. One if building the C library,
 
 The objective of this step is to have the library in a directory named Chipmunk2D in the image directory.
 
-First, download and unzip [this file](https://github.com/slembcke/Chipmunk2D/archive/Chipmunk-7.0.3.zip) in a directory named Chipmunk2D. Alternatively, you can git clone with:
+First, git clone and checkout a specific commit:
+```bash
+git clone git@github.com:slembcke/Chipmunk2D.git
+cd Chipmunk2D
+git checkout d0239ef4599b3688a5a336373f7d0a68426414ba
 ```
-git clone git@github.com:slembcke/Chipmunk2D.git -b Chipmunk-7.0.3 --depth 1
-```
+Why that commit? at the moment of writing this README, the most recent tag in the chipmunk repo is too old (7.0.3) and build fails.
 
 Second, cd to the library root directory and execute in command-line:
-```
-cmake -DCMAKE_C_FLAGS='-DCHIPMUNK_FFI -DCMAKE_BUILD_TYPE=Debug' .
+```bash
+cmake .
 make
 ```
 
-Should show something like:
+It should show something like:
 ```
 [ 34%] Linking C static library libchipmunk.a
 [ 34%] Built target chipmunk_static
 ...
-[ 69%] Linking C shared library libchipmunk.dylib
+[ 69%] Linking C shared library libchipmunk.dylb
 [ 69%] Built target chipmunk
 ...
 [100%] Linking C executable chipmunk_demos
 [100%] Built target chipmunk_demos
 ```
 
-You can dig more [docs](http://chipmunk-physics.net/release/ChipmunkLatest-Docs/) in the case something failed.
-
-You can also run the original library demos with `./demo/chipmunk_demos`. Press keys A to Z to select between scenes.
+You can run the original library demos with `./demo/chipmunk_demos`. Press keys A to Z to select between scenes.
 
 
 **Build Pharo bindings**
@@ -52,3 +53,4 @@ Metacello new
 ~~~
 
 Ensure in `CpLibrary` class that whether `macModuleName` or `unixModuleName` point to the right file.
+
