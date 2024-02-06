@@ -54,3 +54,6 @@ Metacello new
 
 Ensure in `CpLibrary` class that whether `macModuleName` or `unixModuleName` point to the right file.
 
+## License
+
+This code is licensed under the [MIT license](./LICENSE).
