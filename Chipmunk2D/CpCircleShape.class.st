@@ -11,22 +11,24 @@ Class {
 	#category : #'Chipmunk2D-Model'
 }
 
-{ #category : #ffi }
-CpCircleShape class >> ffi_cpCircleShapeNew: aCpBody radius: radius offset: offset [
-	^self ffiCall: #(
-CpCircleShape
-cpCircleShapeNew(CpBody aCpBody, cpFloat radius, cpVect offset)
-)
+{ #category : #'instance creation' }
+CpCircleShape class >> newCircleBody: aCpBody radius: radius offset: aPoint [
+
+	^ (self
+			unownedNewCircleShapeNew: aCpBody
+			radius: radius asFloat
+			offset: aPoint asCpVector)
+		initialize;
+		yourself
 ]
 
 { #category : #'instance creation' }
-CpCircleShape class >> newCircleBody: aCpBody radius: radius offset: aPoint [
-	^ (self
-		ffi_cpCircleShapeNew: aCpBody
-		radius: radius asFloat
-		offset: aPoint asCpVector)
-		initialize;
-		yourself
+CpCircleShape class >> unownedNewCircleShapeNew: aCpBody radius: radius offset: offset [
+
+	^ self ffiCall: #(
+		CpCircleShape
+		cpCircleShapeNew(CpBody aCpBody, cpFloat radius, cpVect offset)
+		)
 ]
 
 { #category : #accessing }

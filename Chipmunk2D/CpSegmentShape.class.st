@@ -12,26 +12,27 @@ Class {
 	#category : #'Chipmunk2D-Model'
 }
 
-{ #category : #ffi }
-CpSegmentShape class >> ffi_cpSegmentNew: body from: a to: b radius: radius [
-	^ self ffiCall: #(
-CpSegmentShape
-cpSegmentShapeNew(CpBody body, cpVect a, cpVect b, cpFloat radius)
-)
-]
-
 { #category : #'instance creation' }
-CpSegmentShape class >> newSegmentBody: aBody a: fromPoint b: toPoint radius: aFloat [
+CpSegmentShape class >> newSegmentBody: aBody from: fromPoint to: toPoint radius: aFloat [
 	"Answer a new instance of this class, using the library API.
 	The instance leaves in C heap and must be released explicitely sending #free."
 
 	^ (self
-		ffi_cpSegmentNew: aBody
+		unownedNewSegmentBody: aBody
 		from: fromPoint asCpVector
 		to: toPoint asCpVector
 		radius: aFloat asFloat)
 		initialize;
 		yourself
+]
+
+{ #category : #'instance creation' }
+CpSegmentShape class >> unownedNewSegmentBody: body from: a to: b radius: radius [
+
+	^ self ffiCall: #(
+		CpSegmentShape
+		cpSegmentShapeNew(CpBody body, cpVect a, cpVect b, cpFloat radius)
+		)
 ]
 
 { #category : #accessing }

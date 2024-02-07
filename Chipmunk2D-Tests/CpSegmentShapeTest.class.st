@@ -9,8 +9,8 @@ CpSegmentShapeTest >> newShape [
 
 	^ CpSegmentShape
 		newSegmentBody: space staticBody
-		a: self segmentA
-		b: self segmentB
+		from: self segmentA
+		to: self segmentB
 		radius: self segmentRadius
 ]
 

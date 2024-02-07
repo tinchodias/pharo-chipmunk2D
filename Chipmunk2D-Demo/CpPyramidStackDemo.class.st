@@ -49,8 +49,8 @@ CpPyramidStackDemo >> addSegmentShapeFrom: source to: target [
 	| shape |
 	shape := CpSegmentShape 
 		newSegmentBody: space staticBody
-		a: source
-		b: target
+		from: source
+		to: target
 		radius: 0.
 	shape
 		elasticity: 1.0;

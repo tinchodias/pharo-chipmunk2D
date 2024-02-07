@@ -13,11 +13,7 @@ Class {
 
 { #category : #finalization }
 CpShape class >> doFreeUsingFFI: handle [
-	self ffi_cpShapeFree: handle
-]
 
-{ #category : #ffi }
-CpShape class >> ffi_cpShapeFree: handle [
 	self ffiCall: #(void cpShapeFree #(void * handle))
 ]
 

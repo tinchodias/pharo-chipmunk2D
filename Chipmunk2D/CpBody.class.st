@@ -60,3 +60,18 @@ CpBody >> positionAsCpVector: aCpVector [
 			cpVect aCpVector)
 		)
 ]
+
+{ #category : #accessing }
+CpBody >> velocity [
+
+	^ self velocityAsCpVector asPoint
+]
+
+{ #category : #accessing }
+CpBody >> velocityAsCpVector [
+
+	^ self ffiCall: #(
+		cpVect
+		cpBodyGetVelocity(CpBody self)
+		)
+]
