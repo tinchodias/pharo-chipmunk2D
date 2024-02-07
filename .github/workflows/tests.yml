@@ -23,8 +23,6 @@ jobs:
       - name: Build Chipmunk2D
         run: ./buildLib.sh
         shell: bash
-      - name: List files in the repository
-        run: ls -R ${{ github.workspace }}
       - name: Load in New Image and Run Tests
         run: smalltalkci -s ${{ matrix.smalltalk }} ${{ matrix.ston }}
         shell: bash

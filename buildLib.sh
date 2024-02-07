@@ -12,12 +12,4 @@ unzip $COMMIT_HASH.zip
 cd Chipmunk2D-$COMMIT_HASH/
 
 cmake cmake -DBUILD_DEMOS=OFF .
-make
-
-cd ../../
-THE_LIBS=build/Chipmunk2D-$COMMIT_HASH/src/libchipmunk.*
-mv $THE_LIBS .
-rm -rf build
-
-echo $(pwd)
-ls -la
+sudo make install
