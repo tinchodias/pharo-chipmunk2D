@@ -11,7 +11,7 @@ wget https://github.com/slembcke/Chipmunk2D/archive/$COMMIT_HASH.zip
 unzip $COMMIT_HASH.zip 
 cd Chipmunk2D-$COMMIT_HASH/
 
-cmake .
+cmake cmake -DBUILD_DEMOS=OFF .
 make
 
 cd ../../
@@ -19,3 +19,5 @@ THE_LIBS=build/Chipmunk2D-$COMMIT_HASH/src/libchipmunk.so*
 mv $THE_LIBS .
 rm -rf build
 
+echo $(pwd)
+ls -la
