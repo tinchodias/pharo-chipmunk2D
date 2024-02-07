@@ -19,7 +19,8 @@ CpLibrary >> ffi_cpMomentForCircleWithMass: m innerRadius: r1 outerRadius: r2 of
 
 { #category : #'accessing platform' }
 CpLibrary >> macModuleName [
-	^ (FileLocator imageDirectory / 'Chipmunk2D' / 'src' / 'libchipmunk.dylib') fullName
+
+	^ FFIMacLibraryFinder findLibrary: 'libchipmunk.dylib'
 ]
 
 { #category : #utils }
@@ -41,5 +42,6 @@ CpLibrary >> momentForCircleWithMass: mass innerRadius: r1 outerRadius: r2 offse
 
 { #category : #'accessing platform' }
 CpLibrary >> unixModuleName [
-	^ (FileLocator imageDirectory / 'Chipmunk2D' / 'src' / 'libchipmunk.so.7.0.3') fullName
+
+	^ FFIUnix64LibraryFinder findLibrary: 'libchipmunk.so'
 ]
