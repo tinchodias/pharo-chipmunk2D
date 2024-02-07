@@ -15,7 +15,7 @@ cmake cmake -DBUILD_DEMOS=OFF .
 make
 
 cd ../../
-THE_LIBS=build/Chipmunk2D-$COMMIT_HASH/src/libchipmunk.so*
+THE_LIBS=build/Chipmunk2D-$COMMIT_HASH/src/libchipmunk.*
 mv $THE_LIBS .
 rm -rf build
 
