@@ -1,0 +1,9 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'Chipmunk2D',
+      #directory : '',
+      #platforms : [ #pharo ]
+    }
+  ]
+}
