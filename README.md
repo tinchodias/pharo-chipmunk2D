@@ -56,6 +56,10 @@ Metacello new
 
 Ensure in `CpLibrary` class that whether `macModuleName` or `unixModuleName` point to the right file.
 
+## History
+
+The origin of this code dates back to https://github.com/cldm/pharo-storm that also comes from Esteban Lorenzano's Storm repostory in the old SmalltalkHub.
+
 ## License
 
 This code is licensed under the [MIT license](./LICENSE).
