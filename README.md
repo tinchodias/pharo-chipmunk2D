@@ -1,6 +1,8 @@
 # Pharo Chipmunk2D bindings
 
-Pharo FFI bindings to use [Chipmunk2D](http://chipmunk-physics.net/).
+Pharo FFI bindings to [Chipmunk2D](http://chipmunk-physics.net/).
+
+⚠️ Warning: Not ready for production: API coverage is very incomplete and must check for memory leaks ⚠️
 
 Chipmunk2D is a simple, lightweight, fast and portable 2D rigid body physics library written in C. It’s licensed under the unrestrictive, OSI approved MIT license. Hundreds of shipping games have chosen Chipmunk because of the high quality, speed, and accuracy of its 2D physics simulations. 
 
